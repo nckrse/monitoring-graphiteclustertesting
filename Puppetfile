@@ -16,7 +16,7 @@ mod 'thias/sysctl'
 
 mod 'diamond',
 :git => 'https://github.com/lesaux/puppet-diamond.git'
-mod 'elasticsearch'
+mod 'elasticsearch',
 :git => 'https://github.com/elasticsearch/puppet-elasticsearch.git'
 mod 'graphite',
 :git => 'https://github.com/lesaux/puppet-graphite.git'
@@ -24,6 +24,6 @@ mod 'monit',
 :git => 'https://github.com/lesaux/puppet-monit.git'
 mod 'redis',
 :git => 'git://github.com/lesaux/puppet-redis.git'
-mod 'redishappy'
+mod 'redishappy',
 :git => 'https://github.com/lesaux/puppet-redishappy.git'
 
