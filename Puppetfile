@@ -24,6 +24,6 @@ mod 'monit',
 :git => 'https://github.com/lesaux/puppet-monit.git'
 mod 'redis',
 :git => 'git://github.com/lesaux/puppet-redis.git'
-mod 'redishappy',
+mod 'redishappy'
 :git => 'https://github.com/lesaux/puppet-redishappy.git'
 
