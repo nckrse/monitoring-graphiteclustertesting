@@ -8,26 +8,26 @@ class haproxycluster::keepalive::base {
 class haproxycluster::keepalive::config {
   if $::ipaddress == $::haproxy_master {
     keepalived::vrrp::instance { 'VI_50':
-    interface => eth0,
+    interface => eth1,
     state => MASTER,
     virtual_router_id => 50,
     priority => 101,
     auth_type => PASS,
     auth_pass => 'secret',
     virtual_ipaddress => [ $haproxy_vip ],
-    track_interface => [ eth0 ], # optional, monitor these interfaces.
+    track_interface => [ eth1 ], # optional, monitor these interfaces.
     track_script => 'check_haproxy',
     }
   } else {
     keepalived::vrrp::instance { 'VI_50':
-    interface => eth0,
+    interface => eth1,
     state => 'BACKUP',
     virtual_router_id => '50',
     priority => '100',
     auth_type => 'PASS',
     auth_pass => 'secret',
     virtual_ipaddress => [ $haproxy_vip ],
-    track_interface => [ eth0 ], # optional, monitor these interfaces.
+    track_interface => [ eth1 ], # optional, monitor these interfaces.
     track_script => 'check_haproxy',
     }
   }
