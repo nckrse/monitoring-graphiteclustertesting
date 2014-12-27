@@ -80,7 +80,7 @@ class { 'haproxy':
 class haproxycluster::haproxy::admin {
   haproxy::listen { 'admin':
     collect_exported => true,
-    ipaddress => $ipaddress,
+    ipaddress => $ipaddress_eth1,
     mode => 'http',
     ports => '8080',
     options => {

@@ -23,7 +23,7 @@ class graphitecluster::elasticsearch::monit {
     start_program => '/etc/init.d/elasticsearch-es-01 start',
     stop_program => '/etc/init.d/elasticsearch-es-01 stop',
     port => 9200,
-    ip => $::ipaddress,
+    ip => $::ipaddress_eth1,
   }
 }
 
@@ -54,7 +54,7 @@ class graphitecluster::apache::config {
   }
 }
   apache::vhost { "graphite.${::domain}":
-    port => 80,
+    port => 8181,
     docroot => '/opt/graphite/webapp',
     error_log_file => 'graphite-error.log',
     access_log_file => 'graphite-access.log',
@@ -229,7 +229,7 @@ class graphitecluster::graphite::monit {
     start_program => '/etc/init.d/carbon-relay_rep start',
     stop_program => '/etc/init.d/carbon-relay_rep stop',
     port => 2213,
-    ip => $::ipaddress,
+    ip => $::ipaddress_eth1,
   }
   monit::service::template { 'carbon-relay_fan':
     process_name => carbon-relay_fan,
@@ -237,7 +237,7 @@ class graphitecluster::graphite::monit {
     start_program => '/etc/init.d/carbon-relay_fan start',
     stop_program => '/etc/init.d/carbon-relay_fan stop',
     port => 2413,
-    ip => $::ipaddress,
+    ip => $::ipaddress_eth1,
   }
   monit::service::template { 'carbon-cache_a':
     process_name => carbon-cache_a,
