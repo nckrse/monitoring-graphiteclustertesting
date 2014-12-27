@@ -6,7 +6,7 @@ class haproxycluster::keepalive::base {
   }
 }
 class haproxycluster::keepalive::config {
-  if $::ipaddress == $::haproxy_master {
+  if $::ipaddress_eth1 == $::haproxy_master {
     keepalived::vrrp::instance { 'VI_50':
     interface => eth1,
     state => MASTER,
