@@ -263,7 +263,7 @@ class graphitecluster::grafana::base {
     datasources => {
       'graphite' => {
         'type' => 'graphite',
-        'url' => "http://${::graphiteweb_vip}:80",
+        'url' => "http://${::graphiteweb_vip}:8181",
         'default' => 'true' # lint:ignore:quoted_booleans
       },
       'elasticsearch' => {

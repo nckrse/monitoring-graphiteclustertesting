@@ -146,7 +146,7 @@ class haproxycluster::haproxy::elasticsearch {
   haproxy::frontend { 'graphite_elasticsearch':
     ipaddress => $haproxy_vip,
     mode => 'http',
-    ports => '9200',
+    ports => '9000',
     options => {
       'default_backend' => ['graphite_elasticsearch_backend'],
       'option' => [ 'tcplog' ],
@@ -165,14 +165,14 @@ class haproxycluster::haproxy::members {
     listening_service => 'graphite_web_backend',
     server_names => "graphite1.$::domain",
     ipaddresses => "$graphite1_ip",
-    ports => '80',
+    ports => '8181',
     options => 'check',
   }
   haproxy::balancermember { 'graphite2_web':
     listening_service => 'graphite_web_backend',
     server_names => "graphite2.$::domain",
     ipaddresses => "$graphite2_ip",
-    ports => '80',
+    ports => '8181',
     options => 'check',
   }
   haproxy::balancermember { 'graphite1_2213':
