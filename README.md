@@ -14,14 +14,14 @@ cd monitoring-graphiteclustertesting
 r10k puppetfile install -v
 
 ####run puppet
-
+```
 change variables in site.pp to match yours
-```
+
 puppet apply site.pp --modulepath=./modules
-```
+
 
 ####dashboards
-
+```
 HAPROXY, node 1: http://haproxy1_ip/haproxy?stats
 HAPROXY, node 2: http://haproxy2_ip/haproxy?stats
 
