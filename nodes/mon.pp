@@ -2,6 +2,8 @@ node /^mon/ {
 
 include monit
 
+class {'graphitecluster::carbonate::install': }->
+
 class {'graphitecluster::elasticsearch::base': }->
 class {'graphitecluster::elasticsearch::config': }->
 class {'graphitecluster::elasticsearch::monit': }->
