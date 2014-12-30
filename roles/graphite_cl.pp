@@ -1,9 +1,3 @@
-class graphitecluster::carbonate::install {
-  package { 'carbonate':
-      ensure   => installed,
-      provider => pip,    
-  }
-}
 class graphitecluster::elasticsearch::base {
   class { 'elasticsearch':
     manage_repo => true,
@@ -125,6 +119,9 @@ class graphitecluster::graphite::base {
     secret_key => 's3cr3t_graphs',
     gr_web_server => 'none',
     gr_cluster_servers => [$::graphite1_ip,$::graphite2_ip],
+    gr_install_carbonate => true,
+    gr_carbonate_servers => ["$::graphite1_ip:2004:carbon01","$::graphite2_ip:2004:carbon02"],
+    gr_carbonate_user    => 'root',
     gr_storage_schemas => [
       {
         name => 'carbon',
