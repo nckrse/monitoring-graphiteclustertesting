@@ -116,7 +116,7 @@ class graphitecluster::graphite::user {
 
   user { 'carbon':
     ensure            =>  'present',
-    uid               =>  108,
+    uid               =>  109,
     gid               =>  116,
     shell             =>  '/bin/bash',
     home              =>  '/opt/graphite',
