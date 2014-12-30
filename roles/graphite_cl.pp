@@ -113,7 +113,14 @@ class graphitecluster::apache::monit {
 }
 
 class graphitecluster::graphite::user {
-
+  case $::osfamily {
+    'redhat': {
+      ensure_packages('ruby-shadow')
+    }
+    'debian': {
+      ensure_packages('ruby-shadow')
+    }
+  }
   user { 'carbon':
     ensure            =>  'present',
     uid               =>  109,
@@ -123,7 +130,7 @@ class graphitecluster::graphite::user {
     comment           =>  'carbon user',
     require           =>  Group['carbon'],
     groups            => "$::apache::group",
-    password          => 'j+Bc`Tw@VRG`;T}W?9N8!+U_m'
+    password          => '$1$vuRgN.yF$5hUa4JxX/ayWhtd5yhfWe.',
   }
 
   group { 'carbon':
