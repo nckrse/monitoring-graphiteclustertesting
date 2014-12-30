@@ -112,6 +112,25 @@ class graphitecluster::apache::monit {
   monit::service { "$::apache::apache_name": }
 }
 
+class graphitecluster::graphite::user {
+
+  user { 'carbon':
+    ensure            =>  'present',
+    uid               =>  108,
+    gid               =>  115,
+    shell             =>  '/bin/bash',
+    home              =>  '/opt/graphite',
+    comment           =>  'carbon user',
+    require           =>  Group['carbon'],
+    groups            => "$::apache::group",
+  }
+
+  group { 'carbon':
+    gid               => 115,
+  }
+
+}
+
 class graphitecluster::graphite::base {
   class { 'graphite':
     gr_max_updates_per_second => 100,
@@ -120,8 +139,9 @@ class graphitecluster::graphite::base {
     gr_web_server => 'none',
     gr_cluster_servers => [$::graphite1_ip,$::graphite2_ip],
     gr_install_carbonate => true,
-    gr_carbonate_servers => ["$::graphite1_ip:2004:carbon01","$::graphite2_ip:2004:carbon02"],
-    gr_carbonate_user    => 'root',
+    gr_carbonate_servers => ["$::graphite1_ip:2004:fan","$::graphite2_ip:2004:fan"],
+    gr_carbonate_user    => 'carbon',
+    gr_carbonate_group   => 'carbon',
     gr_storage_schemas => [
       {
         name => 'carbon',
@@ -224,6 +244,18 @@ class graphitecluster::graphite::base {
       require => Class['graphite'],
     }
   }
+}
+
+class graphitecluster::graphite::postconfig {
+
+  file { '/opt/graphite/.ssh':
+    ensure            =>  directory,
+    owner             =>  carbon,
+    group             =>  carbon,
+    mode              =>  '0700',
+    require           =>  File['/opt/graphite'],
+  }
+
 }
 
 class graphitecluster::graphite::monit {
