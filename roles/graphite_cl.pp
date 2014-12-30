@@ -117,7 +117,7 @@ class graphitecluster::graphite::user {
   user { 'carbon':
     ensure            =>  'present',
     uid               =>  108,
-    gid               =>  115,
+    gid               =>  116,
     shell             =>  '/bin/bash',
     home              =>  '/opt/graphite',
     comment           =>  'carbon user',
@@ -126,7 +126,7 @@ class graphitecluster::graphite::user {
   }
 
   group { 'carbon':
-    gid               => 115,
+    gid               => 116,
   }
 
 }
@@ -140,8 +140,8 @@ class graphitecluster::graphite::base {
     gr_cluster_servers => [$::graphite1_ip,$::graphite2_ip],
     gr_install_carbonate => true,
     gr_carbonate_servers => ["$::graphite1_ip:2004:fan","$::graphite2_ip:2004:fan"],
-    gr_carbonate_user    => 'carbon',
-    gr_carbonate_group   => 'carbon',
+    gr_user    => 'carbon',
+    gr_group   => 'carbon',
     gr_storage_schemas => [
       {
         name => 'carbon',
