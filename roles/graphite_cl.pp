@@ -123,6 +123,7 @@ class graphitecluster::graphite::user {
     comment           =>  'carbon user',
     require           =>  Group['carbon'],
     groups            => "$::apache::group",
+    password          => 'j+Bc`Tw@VRG`;T}W?9N8!+U_m'
   }
 
   group { 'carbon':
